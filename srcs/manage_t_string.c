@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 21:51:20 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/20 22:42:23 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/21 11:06:35 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,16 @@
 #include "t_string.h"
 #include <stdlib.h>
 
-t_status	init_t_string(t_string *string)
+t_status	init_t_string(t_string *string, const char *str)
 {
-	string->str = malloc(sizeof(char));
+	size_t	len;
+
+	len = ft_strlen(str);
+	string->str = malloc(sizeof(char) * (len + 1));
 	if (!string->str)
 		return (ERROR);
-	string->str[0] = '\0';
-	string->len = 0;
+	ft_memcpy(string->str, str, len + 1);
+	string->len = len;
 	return (SUCCESS);
 }
 
